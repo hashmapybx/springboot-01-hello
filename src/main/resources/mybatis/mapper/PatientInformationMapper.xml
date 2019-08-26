@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tx.springboot.mapper.PatientInformationMapper">
+
+    <select id="countNumberBySex" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(patient_no) from t_patient_information where sex = #{sex};
+    </select>
+
+
+    <select id="countNumber" parameterType="java.lang.String" resultType="java.lang.Integer" >
+        select count(distinct a.patient_no) from t_patient_information as a
+                   inner  join  t_series_information as b on a.id = b.id where a.sex=#{sex};
+    </select>
+
+
+
+    <select id="mulitCondition" parameterType="java.util.HashMap" resultType="java.util.List" >
+
+    select a.id as id from t_examine_information as a, t_patient_information as c where a.patient_id = c.id and
+        a.manu_facture=#{map.manu_facture} and (a.study_age between #{map.stu_a} and #{map.stu_b}) and c.sex=#{map.sex}
+
+
+    </select>
+
+</mapper>

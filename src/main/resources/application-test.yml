@@ -1,0 +1,20 @@
+server:
+  port: 8889
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.130.81:4000/db_infervision?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    username: user_view
+    password: view@database
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+
+
+logging:
+  level:
+    com.tx.springboot.mapper: debug
